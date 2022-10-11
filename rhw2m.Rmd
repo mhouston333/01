@@ -1,0 +1,47 @@
+#Analysis of IQ and Lead Exposure
+##by M. Houston
+
+
+
+
+```{r}
+githubproj <- read.csv("lead-iq-01.csv")
+```
+
+**Question A**
+```{r}
+data.frame(githubproj)
+str(githubproj)
+summary(githubproj)
+boxplot(IQ ~ Smelter, data=githubproj)
+```
+
+**Question B**
+```{r}
+library(knitr)
+library(kableExtra)
+
+kable(head(githubproj), digits=2, format= "html", row.names= TRUE) 
+knitr::kable(githubproj)%>%
+kable_classic(full_width = FALSE, html_font = "Cambria", font_size=16)
+  
+  
+```
+
+
+**Question C**
+```
+I graphed the data using a boxplot. There is clearly an impossible outlier.
+The table shows IQ scores sorted by Smelter distance.
+```
+
+
+**Question D**
+
+The overall IQ mean of the sample was `r mean(githubproj$IQ)`.
+
+#Done with initial questions
+
+
+
+

@@ -2,6 +2,6 @@
 #The Directories will be
 #Background
 #Code
-#Results
+#Reports
 #DataProcessed
 #DataRaw

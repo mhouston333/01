@@ -5,15 +5,29 @@
 
 
 ```{r}
+setwd("~/Downloads")
 githubproj <- read.csv("lead-iq-01.csv")
 ```
 
+**Fixing Outlier**
+```{r}
+
+Q1 <- quantile(githubproj$IQ, .25)
+Q3 <- quantile(githubproj$IQ, .75)
+IQR <- IQR(githubproj$IQ)
+
+no_outliers <- subset(githubproj, githubproj$IQ> (Q1 - 3*IQR) & githubproj$IQ< (Q3 + 3*IQR))
+
+dim(no_outliers) 
+
+
+```
 **Question A**
 ```{r}
-data.frame(githubproj)
-str(githubproj)
-summary(githubproj)
-boxplot(IQ ~ Smelter, data=githubproj)
+data.frame(no_outliers)
+str(no_outliers)
+summary(no_outliers)
+boxplot(IQ ~ Smelter, data=no_outliers)
 ```
 
 **Question B**
@@ -21,8 +35,8 @@ boxplot(IQ ~ Smelter, data=githubproj)
 library(knitr)
 library(kableExtra)
 
-kable(head(githubproj), digits=2, format= "html", row.names= TRUE) 
-knitr::kable(githubproj)%>%
+kable(head(no_outliers), digits=2, format= "html", row.names= TRUE) 
+knitr::kable(no_outliers)%>%
 kable_classic(full_width = FALSE, html_font = "Cambria", font_size=16)
   
   
@@ -38,9 +52,13 @@ The table shows IQ scores sorted by Smelter distance.
 
 **Question D**
 
-The overall IQ mean of the sample was `r mean(githubproj$IQ)`.
+The overall IQ mean of the sample was `r mean(no_outliers$IQ)`.
 
-#Done with initial questions
+#Done 
+
+
+
+
 
 
 
